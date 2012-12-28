@@ -1,0 +1,119 @@
+body {
+  background: #2b2b2b url(/assets/design/bk.png);
+  font-family: "Trebuchet MS", Verdana, Arial;
+  font-size: 13px; }
+
+#container {
+  background-color: #f0f3ec;
+  border: 2px solid #242424;
+  margin: 0 auto;
+  padding: 20px 0 20px 0;
+  width: 600px;
+  position: relative; }
+  #container .nav-bar {
+    background: #323232 url(/assets/design/bk-nav.png) repeat-x;
+    position: absolute;
+    color: white;
+    font-size: 11px;
+    height: 20px;
+    width: 580px;
+    padding: 0px 10px 0px 10px;
+    z-index: 99; }
+  #container #nav-account {
+    top: 0px;
+    border-bottom: 2px solid #242424; }
+    #container #nav-account p {
+      float: right; }
+  #container #nav-chat {
+    bottom: 0px;
+    border-top: 2px solid #242424; }
+  #container #header {
+    background: #bfdc66 url(/assets/design/header.png) no-repeat top center;
+    border: 3px solid #edf5e0;
+    margin-top: 2px;
+    height: 64px;
+    width: 594px;
+    z-index: 98; }
+    #container #header a {
+      display: block;
+      outline: none;
+      padding-right: 10px;
+      padding-top: 40px;
+      text-align: right; }
+  #container #menu {
+    background: url(/assets/design/bk-menu.png) repeat-x;
+    height: 40px;
+    margin: 0px auto;
+    padding: 0;
+    top: 92px;
+    width: 600px;
+    z-index: 97; }
+    #container #menu ul {
+      float: right;
+      list-style-type: none;
+      padding-left: 30px; }
+      #container #menu ul li {
+        float: left; }
+      #container #menu ul#change-position {
+        float: left;
+        padding-left: 0px; }
+        #container #menu ul#change-position a {
+          width: 30px; }
+    #container #menu a {
+      color: white;
+      display: block;
+      font-size: 13px;
+      height: 17px;
+      padding: 3px 0px 2px 0px;
+      text-align: center;
+      width: 100px;
+      text-decoration: none; }
+      #container #menu a:hover, #container #menu a:focus {
+        font-weight: bold;
+        outline: none; }
+    #container #menu li ul {
+      display: none;
+      margin: 0 auto;
+      padding: 0;
+      position: absolute;
+      z-index: 98; }
+      #container #menu li ul li.last-link, #container #menu li ul li.last-link a {
+        border-radius: 0px 0px 4px 4px; }
+      #container #menu li ul a {
+        font-size: 11px; }
+        #container #menu li ul a:hover, #container #menu li ul a:focus {
+          background: url(/assets/design/bk-submenu.png) bottom left;
+          font-weight: normal; }
+    #container #menu li:hover, #container #menu li:focus {
+      background: transparent url(/assets/design/bk-submenu.png) top left;
+      font-weight: bold; }
+      #container #menu li:hover ul, #container #menu li:focus ul {
+        display: block; }
+        #container #menu li:hover ul li, #container #menu li:focus ul li {
+          background-image: url(/assets/designbk-submenu.png);
+          background-position: center left;
+          display: block;
+          float: none;
+          font-weight: normal; }
+  #container #main {
+    color: #2b2b2b;
+    min-height: 520px; }
+    #container #main h1 {
+      background: transparent url(/assets/design/bk-dash.png) repeat-x center center;
+      clear: both;
+      color: #788c37;
+      font-size: 20px;
+      font-weight: normal;
+      margin: 10px 0px 5px 0px;
+      text-align: center; }
+      #container #main h1 span {
+        background: transparent url(/assets/design/bk-dash-over.png) repeat-x center center;
+        padding: 0px 10px; }
+  #container #ariane {
+    margin-bottom: -12px;
+    padding-left: 30px; }
+  #container #footer {
+    color: white;
+    font-size: 12px;
+    padding-bottom: 24px;
+    text-align: center; }

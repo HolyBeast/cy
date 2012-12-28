@@ -1,0 +1,31 @@
+!!! Strict
+%html
+  %head
+    %title Cy
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+
+  %body
+    #container
+      #nav-account.nav-bar
+        %span#clock 12:30
+        %img{:src => "/assets/icon/clock-frame.png"}
+        %p Lulin | 7 PA
+
+      #header
+        %a{:href => "/"}
+          %img{:src => "/assets/design/title.png", :alt => "Titre de l'en-tête"}
+      
+      #menu
+        %ul
+          %li
+            = link_to 'S\'engager !', register_url
+
+      #main
+        %p#ariane
+        = yield
+
+      #nav-chat.nav-bar
+
+      #footer
