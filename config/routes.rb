@@ -1,6 +1,4 @@
 Cy::Application.routes.draw do
-  get "player/register"
-
   get "home/index"
 
   # The priority is based upon order of creation:
@@ -16,7 +14,8 @@ Cy::Application.routes.draw do
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-  match '/register' => 'player#register', :as => :register
+  match '/register' => 'hero#register', :as => :register
+  match '/help' => 'help#index', :as => :help
 
   # Sample resource route with options:
   #   resources :products do
@@ -61,3 +60,8 @@ Cy::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 end
+#== Route Map
+# Generated on 04 Jan 2013 17:44
+#
+#   register     /register(.:format)   hero#register
+#       root     /                     home#index

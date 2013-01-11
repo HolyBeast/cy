@@ -1,0 +1,57 @@
+#container
+  form
+    .field
+      margin-bottom: 10px
+      width: 100%
+
+      label
+        display      : block
+        margin-bottom: 3px
+
+      input, select
+        font-size: 12px
+        height   : 22px
+        width    : 100%
+
+      input
+        background-image   : url(design/bk-field-text.png), url(design/bk-field-text.png)
+        background-position: left top, right top
+        background-repeat  : no-repeat
+        border : 0px
+        color  : #fff
+        outline: 0px
+        padding: 2px 5px 3px 8px
+
+        &:focus
+          background-position: left bottom, right bottom
+
+      input[type=submit]
+        background-image   : url(design/bk-field-submit.png), url(design/bk-field-submit.png)
+        background-position: left top, right top
+        background-repeat  : no-repeat
+        cursor             : pointer
+
+        &:focus, &:hover
+          background-position: left bottom, right bottom
+
+      .select
+        border             : 0px
+        background-image   : url(design/bk-field-select.png), url(design/bk-field-select.png)
+        background-position: left top, right top
+        background-repeat  : no-repeat
+        color              : #fff
+        display            : block
+        height             : 22px
+        outline            : 0px
+        padding            : 2px 5px 3px 8px
+        position           : relative
+        text-decoration    : none
+        width              : 100%
+
+        &.focus
+          background-position: left bottom, right bottom
+
+        select
+          left    : 0px
+          top     : 0px
+          position: absolute

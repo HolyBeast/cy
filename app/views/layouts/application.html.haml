@@ -1,31 +1,36 @@
 !!! Strict
 %html
   %head
-    %title Cy
+    %title= title
+    = favicon_link_tag       "icon/favicon.ico"
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
 
   %body
     #container
-      #nav-account.nav-bar
-        %span#clock 12:30
-        %img{:src => "/assets/icon/clock-frame.png"}
-        %p Lulin | 7 PA
-
       #header
-        %a{:href => "/"}
-          %img{:src => "/assets/design/title.png", :alt => "Titre de l'en-tête"}
-      
-      #menu
-        %ul
-          %li
-            = link_to 'S\'engager !', register_url
+        #nav-account
+          %span#clock= Time.now.strftime "%F %T"
+          = image_tag "icon/clock-frame.png"
+          %p
+            - if true
+              Lulin | 7 PA
+            - else
+              Connection
+
+        #title
+          = link_to image_tag("design/title.png", :alt => "Titre de l'en⁻tête", :style => "visibility: hidden"), root_path
+        
+        #menu
+          %ul
+            %li
+              = link_to "S'engager !", register_path
 
       #main
         %p#ariane
         = yield
-
-      #nav-chat.nav-bar
-
-      #footer
+        .wrapper
+        
+    #footer
+      \~ Lulin &copy; 2013 ~

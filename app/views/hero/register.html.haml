@@ -1,0 +1,59 @@
+%h1 
+  %span S'engager
+
+= cy_form_for :register do |form|
+  .observator
+    Bonjour, je suis l'Observateur. J'apparaîtrai à tout moment pour vous aider, même dans les ténèbres les plus profondes.
+
+
+  .col-50
+    %h2 Héros
+    
+    .field
+      = form.label :firstname, 'Prénom'
+      = form.text_field :firstname, :title => 'Un prénom ou surnom fantastique, de 3 à 12 lettres.'
+
+    .field
+      = form.label :lastname, 'Nom'
+      = form.text_field :lastname, :title => 'Un nom fantastique, de 3 à 17 lettres (un espace et une apostrophe admis). <br />Exemple : de Dun'.html_safe
+
+    .field
+      = form.label :nation, 'Nation'
+      = form.select :nation, ["Empire Mécanique de Klüm", "Horde d'Al Garn", "Nation Marchande d'Ulysk", "Royaume Académique de Ludwynn"]
+
+    .field
+      = form.label :race, 'Race'
+      = form.select :race, ['Humain', 'Humain des plaines', 'Nain'], {}, {:title => 'Hihi'}
+
+    .field
+      = form.label :sex, 'Sexe'
+      = form.select :sex, ['Homme', 'Femme', 'Autre']
+
+  .col-50
+    %h2 Avatar
+    
+    .avatar
+      = image_tag 'avatar/sample.png'
+
+    %h2 Connexion
+
+    .field
+      = form.label :email, 'Adresse email'
+      = form.text_field :email, :title => 'Une adresse email valide qui vous permettra de vous connecter.'
+
+    .field
+      = form.label :password, 'Mot de passe'
+      = form.password_field :password, :title => 'Un mot de passe sécurisé, de 6 à 40 caractères.'
+
+    .field
+      = form.label :password_confirmation, 'Confirmation'
+      = form.password_field :password_confirmation, :title => 'Retapez votre mot de passe pour être sûr de ne pas vous tromper.'
+
+  .col-100
+    .field
+      En vous inscrivant, vous acceptez
+      = link_to 'le règlement du jeu', help_path
+      qui stipule que le multicompte et le prêt de compte sont interdits.
+    
+    .field
+      = form.submit "S'inscrire"
