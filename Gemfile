@@ -20,13 +20,12 @@ end
 
 group :development do
   gem 'annotate'
+  gem 'sqlite3'
 end
 
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
- 
-  gem 'sqlite3'
 end
 
 gem 'jquery-rails'
