@@ -1,5 +1,5 @@
 #
-# Name    : jHelp
+# Name    : jHint
 # Author  : Damien Vossen, http://www.terresdecy.be
 # Version : 0.1
 #
@@ -8,19 +8,22 @@ $ = jQuery
 
 $.fn.typewriter = ->
   @each ->
-    $ele = $(this)
-    str = $.trim($ele.html())
+    clearInterval this.timer if @timer?
+
     progress = 0
-    $ele.text ""
-    timer = setInterval(->
-      clearInterval timer  if progress > str.length or $ele.length < 1
+    $ele     = $(@)
+    str      = $.trim($ele.html())
+    
+    $ele.empty()
+
+    @timer = setInterval ->
       $ele.html str.substring(0, progress++)
-    , 25)
+    , 25
 
   this
 
 
-$.jHelp = ( element, options ) ->
+$.jHint = ( element, options ) ->
   # current state
   state = ''
 
@@ -55,42 +58,52 @@ $.jHelp = ( element, options ) ->
     
     # Check the existence of the element
     if @$element.length
+      @current = 'original'
       @$target = $ @settings.target
-      @counter = 0;
+
+      @$element
+      .attr('original-hint', $.trim(@$element.html()))
+      .wrapInner '<p class="hint-original" />'
+
+      that = @
 
       @$target
       .focus ->
-
-        if $(this).attr('title') != ''
-          $(this)
-          .attr('original-title', $.trim($(this).attr('title')))
+        
+        if $(@).attr('title') != ''
+          $(@)
+          .attr('original-title', $.trim($(@).attr('title')))
           .attr 'title', ''
 
-        blabla = $(this).attr 'original-title'
+        blabla = $(@).attr 'original-title'
 
-        $('#test').text(_this.current + '-' + this.id)
+        if that.current != @id and blabla != ''
+          
+          clearTimeout that.onblur if that.onblur?
 
-        if _this.current != this.id and blabla != ''
-          if !_this.$element.attr('original-blabla')?
-            _this.$element.attr('original-blabla', $.trim(_this.$element.html())).empty()
+          that.$element
+          .find('p')
+          .attr('class', 'hint-' + @id)
+          .html(blabla)
+          .typewriter()
 
-          clearTimeout _this.onblur if _this.onblur?
-          $('.observator .blabla-' + _this.current).remove()
-          _this.current = this.id
-          _this.$element.append('<p class="blabla-' + _this.current + '"></p>')
-          $('.observator .blabla-' + _this.current).html(blabla).typewriter()
+          that.current = @id
 
-      .blur =>
-        clearTimeout _this.onblur if _this.onblur?
-        _this.onblur = setTimeout ->
-          $('.observator .blabla-' + _this.current).remove()
-          _this.current = 'original'
-          _this.$element.append('<p class="blabla-original"></p>')
-          $('.observator .blabla-original').html($('.observator').attr('original-blabla')).typewriter() # Nettoyage de l'info-bulle
-        , 5000
+      .blur ->
+        clearTimeout that.onblur if that.onblur?
+
+        that.onblur = setTimeout ->
+          that.$element
+          .find('p')
+          .attr('class', 'hint-original')
+          .html(that.$element.attr('original-hint'))
+          .typewriter()
+
+          that.current = 'original'
+        , 3000
 
       .change ->
-        $(this).parent().focus()
+        $(@).parent().focus()
 
   # initialise the plugin
   @init()
@@ -99,13 +112,12 @@ $.jHelp = ( element, options ) ->
   this
 
 # default plugin settings
-$.jHelp::defaults =
-  speed: 'fast',
+$.jHint::defaults =
   target: 'input[title], select'
   callback: -> 
 
-$.fn.jHelp = ( options ) ->
-  this.each ->
-    if $(this).data( 'jHelp' ) is undefined
-      plugin = new $.jHelp( this, options )
-      $(this).data( 'jHelp', plugin )
+$.fn.jHint = (options) ->
+  @each ->
+    if $(@).data('jHint') is undefined
+      plugin = new $.jHint(@, options)
+      $(@).data('jHint', plugin)

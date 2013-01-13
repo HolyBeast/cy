@@ -9,6 +9,7 @@
     %h2 Héros
     
     #test
+    #blur
     .field
       = form.label :firstname, 'Prénom'
       = form.text_field :firstname, :title => 'Un prénom ou surnom fantastique, de 3 à 12 lettres.'
@@ -52,7 +53,7 @@
   .col-100
     .field
       En vous inscrivant, vous acceptez
-      = link_to 'le règlement du jeu', help_path
+      = link_to 'le règlement du jeu', rules_path
       qui stipule que le multicompte et le prêt de compte sont interdits.
     
     .field

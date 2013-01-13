@@ -5,4 +5,4 @@
 $(document).ready ->
   $('#clock').clock()
   $('#main form select').jSelect()
-  $('.observator').jHelp()
+  $('.observator').jHint()
