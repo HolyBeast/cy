@@ -69,7 +69,7 @@ $.jTip = ( element, options ) ->
 
       .blur =>
         @tooltip.remove() # Nettoyage de l'info-bulle
-
+        
   # initialise the plugin
   @init()
 

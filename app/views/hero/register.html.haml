@@ -5,10 +5,10 @@
   .observator
     Bonjour, je suis l'Observateur. J'apparaîtrai à tout moment pour vous aider, même dans les ténèbres les plus profondes.
 
-
   .col-50
     %h2 Héros
     
+    #test
     .field
       = form.label :firstname, 'Prénom'
       = form.text_field :firstname, :title => 'Un prénom ou surnom fantastique, de 3 à 12 lettres.'
@@ -27,7 +27,7 @@
 
     .field
       = form.label :sex, 'Sexe'
-      = form.select :sex, ['Homme', 'Femme', 'Autre']
+      = form.select :sex, options_for_select([['Homme', {:title => 'Test'}], 'Femme', 'Autre']), {}, {:title => 'Test bis :D'}
 
   .col-50
     %h2 Avatar

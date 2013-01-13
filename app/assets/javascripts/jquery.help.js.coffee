@@ -62,18 +62,18 @@ $.jHelp = ( element, options ) ->
       .focus ->
 
         if $(this).attr('title') != ''
-          blabla = $.trim $(this).attr 'title'
-
           $(this)
-          .attr('original-title', blabla)
-          .attr('title', '')
-        else
-          blabla = $(this).attr 'original-title'
+          .attr('original-title', $.trim($(this).attr('title')))
+          .attr 'title', ''
 
-        if !_this.$element.attr('original-blabla')?
-          _this.$element.attr('original-blabla', _this.$element.html()).empty()
+        blabla = $(this).attr 'original-title'
 
-        if _this.current != this.id
+        $('#test').text(_this.current + '-' + this.id)
+
+        if _this.current != this.id and blabla != ''
+          if !_this.$element.attr('original-blabla')?
+            _this.$element.attr('original-blabla', $.trim(_this.$element.html())).empty()
+
           clearTimeout _this.onblur if _this.onblur?
           $('.observator .blabla-' + _this.current).remove()
           _this.current = this.id
@@ -88,7 +88,10 @@ $.jHelp = ( element, options ) ->
           _this.$element.append('<p class="blabla-original"></p>')
           $('.observator .blabla-original').html($('.observator').attr('original-blabla')).typewriter() # Nettoyage de l'info-bulle
         , 5000
-  
+
+      .change ->
+        $(this).parent().focus()
+
   # initialise the plugin
   @init()
 
@@ -98,7 +101,7 @@ $.jHelp = ( element, options ) ->
 # default plugin settings
 $.jHelp::defaults =
   speed: 'fast',
-  target: 'input[title], select[title]'
+  target: 'input[title], select'
   callback: -> 
 
 $.fn.jHelp = ( options ) ->
