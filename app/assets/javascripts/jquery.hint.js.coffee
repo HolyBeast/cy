@@ -18,7 +18,7 @@ $.fn.typewriter = ->
 
     @timer = setInterval ->
       $ele.html str.substring(0, progress++)
-    , 25
+    , 13
 
   this
 
@@ -86,8 +86,10 @@ $.jHint = ( element, options ) ->
                 that.$element
                 .find('p')
                 .attr('class', 'hint-' + @id)
-                .html(hint)
-                .typewriter()
+                .fadeOut 'fast', ->
+                  $(this)
+                  .html(hint)
+                  .fadeIn('fast')
 
                 that.current = @id
 
@@ -100,8 +102,10 @@ $.jHint = ( element, options ) ->
               that.$element
               .find('p')
               .attr('class', 'hint-original')
-              .html(that.$element.attr('original-hint'))
-              .typewriter()
+              .fadeOut 'fast', ->
+                $(this)
+                .html(that.$element.attr('original-hint'))
+                .fadeIn('fast')
 
               that.current = 'original'
             , 3000

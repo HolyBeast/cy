@@ -14,7 +14,8 @@ Cy::Application.routes.draw do
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-  match '/register' => 'hero#register', :as => :register
+  resources :users
+    match '/register' => 'users#register', :as => :register
   match '/rules'    => 'pages#rules', :as => :rules
   match '/help'     => 'help#index', :as => :help
 

@@ -13,9 +13,10 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :contact_email, :email, :login, :pass, :state
+  attr_accessible :contact_email, :email, :login, :pass, :pass_confirmation, :state, :hero, :hero_attributes
 
-  has_one :hero
+  has_one :hero, :dependent => :destroy
+  accepts_nested_attributes_for :hero
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -24,12 +25,5 @@ class User < ActiveRecord::Base
                     :uniqueness => { :case_sensitive => false }
   validates :login, :presence => true, 
                     :length => { :within => 4..25 }
-  
-  def initialize(attributes = {})
-    @login         = attributes[:login]
-    @email         = attributes[:email]
-    @contact_email = attributes[:contact_email]
-    @pass          = attributes[:pass]
-    @state         = attributes[:state]
-  end
+  validates :pass, :confirmation => true
 end
