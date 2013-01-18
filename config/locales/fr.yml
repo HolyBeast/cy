@@ -1,0 +1,56 @@
+# Sample localization file for French. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+fr:
+  title:
+    home:     Accueil
+    register: "S'engager"
+
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            name:
+              too_short: Le nom doit compter au moins %{count} caractères.
+              too_long:  Le nom ne doit pas excéder %{count} caractères.
+              invalid:   Le nom ne doit compter que des caractères simples.
+            
+            email:
+              invalid:   L'email est invalide.
+              blank:     L'email doit être renseigné.
+            
+            pass:
+              blank:        Le mot de passe doit être renseigné.
+              confirmation: La confirmation ne correspond pas !
+              too_short:    Le mot de passe doit compter au moins %{count} caractères.
+              too_long:     Le nom ne doit pas excéder %{count} caractères.
+            pass_confirmation:
+              blank:     Le mot de passe doit être confirmé !
+        hero:
+          attributes:
+            firstname:
+              blank:  Le nom de votre héros doit être renseigné.
+
+            nation:
+              blank:     La nation de votre héros doit être renseignée.
+              inclusion: La nation de votre héros doit être dans la liste.
+
+            race:
+              blank:     La race de votre héros doit être renseignée.
+              inclusion: La race de votre héros doit être dans la liste.
+
+  nations:
+    klum:    Empire Mécanique de Klüm
+    garn:    Horde d'Al Garn
+    ulysk:   Nation Marchande d'Ulysk
+    ludwynn: Royaume Académique de Ludwynn
+
+  races:
+    dwarf:      Nain
+    elf:        Elfe
+    gwanling:   Gwanling
+    human:      Humain
+    human_west: Humain des plaines
+    orc:        Orc
+    orc_voda:   Orc Voda

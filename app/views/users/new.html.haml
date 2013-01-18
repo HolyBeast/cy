@@ -1,0 +1,42 @@
+%h1 
+  %span= t('title.register')
+
+= cy_form_for @user, :url => register_path do |u|
+  .observator
+    Bonjour, je suis l'Observateur. J'apparaîtrai à tout moment pour vous aider, même dans les ténèbres les plus profondes.
+
+  .col-50
+    %h2 Héros
+
+    = u.simple_fields_for :hero do |h|
+      = h.input :firstname
+
+      = h.input :lastname
+
+      = h.input :nation, :collection => Nation::NAMES.map { |name| [ t(name, scope: 'nations'), name ] }
+
+      = h.input :race, :collection => Race::NAMES['klum'].map { |name| [ t(name, scope: 'races'), name ] }
+
+      = h.input :sex, :collection => Hero::SEX
+
+  .col-50
+    %h2 Avatar
+    
+    .avatar
+      = image_tag 'avatar/sample.png'
+
+    %h2 Connexion
+
+    = u.input :email
+
+    = u.input :pass
+
+    = u.input :pass_confirmation
+
+  .col-100
+    .field
+      En vous inscrivant, vous acceptez
+      = link_to 'le règlement du jeu', rules_path
+      qui stipule que le multicompte et le prêt de compte sont interdits.
+    
+    = u.submit "S'inscrire"

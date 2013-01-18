@@ -3,7 +3,6 @@
 # Table name: users
 #
 #  id            :integer          not null, primary key
-#  login         :string(20)
 #  pass          :string(40)
 #  email         :string(100)
 #  contact_email :string(100)

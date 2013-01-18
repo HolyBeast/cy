@@ -17,4 +17,16 @@
 class Hero < ActiveRecord::Base
   attr_accessible :firstname, :lastname, :nation, :race, :rank, :sex
   belongs_to :user
+
+  SEX = %w( Homme Femme Autre )
+
+  validates :firstname, :presence => true,
+                        :length => { maximum: 12 },
+                        :uniqueness => { scope: :lastname }
+
+  validates :nation, :presence => true,
+                     :inclusion => { in: Nation::NAMES }
+  
+  validates :sex, :presence => true,
+                  :inclusion => { in: self::SEX }
 end

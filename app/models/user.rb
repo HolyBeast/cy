@@ -3,7 +3,6 @@
 # Table name: users
 #
 #  id            :integer          not null, primary key
-#  login         :string(20)
 #  pass          :string(40)
 #  email         :string(100)
 #  contact_email :string(100)
@@ -13,7 +12,7 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :contact_email, :email, :login, :pass, :pass_confirmation, :state, :hero, :hero_attributes
+  attr_accessible :contact_email, :email, :pass, :pass_confirmation, :state, :hero, :hero_attributes
 
   has_one :hero, :dependent => :destroy
   accepts_nested_attributes_for :hero
@@ -23,7 +22,9 @@ class User < ActiveRecord::Base
   validates :email, :presence => true,
                     :format => { :with => email_regex },
                     :uniqueness => { :case_sensitive => false }
-  validates :login, :presence => true, 
-                    :length => { :within => 4..25 }
-  validates :pass, :confirmation => true
+  validates :pass, :presence => true,
+                   :confirmation => true,
+                   :length => { :within => 6..40 }
+
+  validates :pass_confirmation, :presence => true
 end

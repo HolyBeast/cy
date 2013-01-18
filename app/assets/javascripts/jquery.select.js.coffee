@@ -38,6 +38,12 @@ $.jSelect = ( element, options ) ->
     .wrap('<div class="select" />')
     .before('<span>' + @$element.find('option:selected').text() + '</span>')
 
+
+    @$element
+    .removeClass('error')
+    .parent()
+    .addClass('error') if @$element.is('.error')
+
     @$element
     .css('opacity', '0')
     .change =>

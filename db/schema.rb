@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(:version => 20130104031553) do
   add_index "heros", :user_id
 
   create_table "users", :force => true do |t|
-    t.string   "login",         :limit => 20
     t.string   "pass",          :limit => 40
     t.string   "email",         :limit => 100
     t.string   "contact_email", :limit => 100
@@ -39,6 +38,5 @@ ActiveRecord::Schema.define(:version => 20130104031553) do
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["login"], :name => "index_users_on_login", :unique => true
 
 end

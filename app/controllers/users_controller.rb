@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  def register
-    @title = "S'engager"
+  def new
+    @title = 'register'
     @user  = User.new
     @hero  = @user.build_hero
   end
@@ -9,9 +9,10 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
 
     if @user.save
+
     else
-      @title = "S'engager"
-      render 'register'
+      @title = 'register'
+      render 'new'
     end
   end
 end

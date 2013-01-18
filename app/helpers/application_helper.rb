@@ -5,13 +5,13 @@ module ApplicationHelper
     if @title.nil?
       baseTitle
     else
-      "#{@title} ~ #{baseTitle}"
+      t('title.' + @title) + " ~ #{baseTitle}"
     end
   end
   
   def cy_form_for(name, *args, &block)
     options = args.extract_options!
  
-    form_for(name, *(args << options.merge(:builder => CyFormBuilder)), &block)
-  end 
+    simple_form_for(name, *(args << options.merge(:builder => CyFormBuilder)), &block)
+  end
 end

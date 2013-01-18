@@ -60,7 +60,6 @@ $.jHint = ( element, options ) ->
     if @$element.length
       @current = 'original'
       @$target = $ @settings.target
-      @counter = 0
 
       @$element
       .attr('original-hint', $.trim(@$element.html()))
@@ -69,46 +68,44 @@ $.jHint = ( element, options ) ->
       that = @
 
       @$target
-      .each ->
-        $(@)
-        .focus ->
+      .focus ->
 
-          if $(@).attr('title') != ''
-            $(@)
-            .attr('original-title', $.trim($(@).attr('title')))
-            .attr 'title', ''
+        if $(@).attr('title') != ''
+          $(@)
+          .attr('original-title', $.trim($(@).attr('title')))
+          .attr 'title', ''
 
-          hint = $(@).attr 'original-title'
-          if hint != ''
-            clearTimeout that.onblur if that.onblur?
-          
-            if that.current != @id
-                that.$element
-                .find('p')
-                .attr('class', 'hint-' + @id)
-                .fadeOut 'fast', ->
-                  $(this)
-                  .html(hint)
-                  .fadeIn('fast')
-
-                that.current = @id
-
-        .blur ->
-
-          if that.current != 'original'
-            clearTimeout that.onblur if that.onblur?
-
-            that.onblur = setTimeout ->
+        hint = $(@).attr 'original-title'
+        if hint != ''
+          clearTimeout that.onblur if that.onblur?
+        
+          if that.current != @id
               that.$element
               .find('p')
-              .attr('class', 'hint-original')
+              .attr('class', 'hint-' + @id)
               .fadeOut 'fast', ->
                 $(this)
-                .html(that.$element.attr('original-hint'))
+                .html(hint)
                 .fadeIn('fast')
 
-              that.current = 'original'
-            , 3000
+              that.current = @id
+
+      .blur ->
+
+        if that.current != 'original'
+          clearTimeout that.onblur if that.onblur?
+
+          that.onblur = setTimeout ->
+            that.$element
+            .find('p')
+            .attr('class', 'hint-original')
+            .fadeOut 'fast', ->
+              $(this)
+              .html(that.$element.attr('original-hint'))
+              .fadeIn('fast')
+
+            that.current = 'original'
+          , 3000
 
   # initialise the plugin
   @init()
