@@ -25,12 +25,17 @@ fr:
               confirmation: La confirmation ne correspond pas !
               too_short:    Le mot de passe doit compter au moins %{count} caractères.
               too_long:     Le nom ne doit pas excéder %{count} caractères.
+            
             pass_confirmation:
               blank:     Le mot de passe doit être confirmé !
         hero:
           attributes:
             firstname:
-              blank:  Le nom de votre héros doit être renseigné.
+              blank:     Le prénom de votre héros doit être renseigné.
+              too_short: Le prénom de votre héros doit compter au moins %{count} lettres.
+            
+            lastname:
+              too_short: Le nom de votre héros doit compter au moins %{count} lettres.
 
             nation:
               blank:     La nation de votre héros doit être renseignée.

@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   validates :email, :presence => true,
                     :format => { :with => email_regex },
                     :uniqueness => { :case_sensitive => false }
+                    
   validates :pass, :presence => true,
                    :confirmation => true,
                    :length => { :within => 6..40 }

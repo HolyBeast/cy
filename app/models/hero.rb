@@ -21,12 +21,18 @@ class Hero < ActiveRecord::Base
   SEX = %w( Homme Femme Autre )
 
   validates :firstname, :presence => true,
-                        :length => { maximum: 12 },
+                        :length => { within: 3..12 },
                         :uniqueness => { scope: :lastname }
+
+  validates :lastname, :length => { within: 3..17 },
+                       :if => lambda { |hero| !hero.lastname.blank? }
 
   validates :nation, :presence => true,
                      :inclusion => { in: Nation::NAMES }
-  
+
+  validates :race, :presence => true,
+                   :inclusion => { in: lambda { |hero| Race::NAMES[hero.nation] } }
+
   validates :sex, :presence => true,
                   :inclusion => { in: self::SEX }
 end

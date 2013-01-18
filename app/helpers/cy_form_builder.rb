@@ -1,8 +1,13 @@
 class CyFormBuilder < SimpleForm::FormBuilder
   def input(name, options = {}, &block)
-    hint_text = hint(name).slice(5..-7)
+    hint_text  = hint(name).slice(5..-7)
     error_text = object.errors[name.to_sym].blank? ? nil : object.errors[name.to_sym].first
-    title_text = error_text.nil? ? hint_text : "#{hint_text}<br /><br /><span style=\"color: #c22\">#{error_text}</span>"
+    
+    title_text = ''
+    title_text << "#{hint_text}" if !hint_text.blank?
+    title_text << "<br /><br />" if !hint_text.blank? && !error_text.nil?
+    title_text << "<span style=\"color: #c22\">#{error_text}</span>" if !error_text.nil?
+
     label_class = error_text.nil? ? nil : 'error'
 
     if options[:collection]
