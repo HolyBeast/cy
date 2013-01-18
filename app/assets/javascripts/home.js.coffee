@@ -6,3 +6,7 @@ $(document).ready ->
   $('#clock').clock()
   $('#main form select').jSelect()
   $('.observator').jHint()
+
+  if $.browser.webkit
+    $('input[type=text], input[type=password]').each ->
+      $(this).attr 'autocomplete', 'off'

@@ -12,20 +12,20 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :contact_email, :email, :pass, :pass_confirmation, :state, :hero, :hero_attributes
+  attr_accessible :contact_email, :email, :password, :password_confirmation, :role, :hero, :hero_attributes
 
   has_one :hero, :dependent => :destroy
   accepts_nested_attributes_for :hero
 
-  email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  email_regex = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
   validates :email, :presence => true,
                     :format => { :with => email_regex },
                     :uniqueness => { :case_sensitive => false }
                     
-  validates :pass, :presence => true,
-                   :confirmation => true,
-                   :length => { :within => 6..40 }
+  validates :password, :presence => true,
+                       :confirmation => true,
+                       :length => { :within => 6..40 }
 
-  validates :pass_confirmation, :presence => true
+  validates :password_confirmation, :presence => true
 end

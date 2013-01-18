@@ -29,10 +29,10 @@ ActiveRecord::Schema.define(:version => 20130104031553) do
   add_index "heros", :user_id
 
   create_table "users", :force => true do |t|
-    t.string   "pass",          :limit => 40
+    t.string   "password",      :limit => 40
     t.string   "email",         :limit => 100
     t.string   "contact_email", :limit => 100
-    t.integer  "state",         :limit => 2
+    t.integer  "role",          :limit => 2, :default => 1
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
