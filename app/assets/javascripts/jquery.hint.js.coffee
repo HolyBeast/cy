@@ -80,13 +80,23 @@ $.jHint = ( element, options ) ->
           clearTimeout that.onblur if that.onblur?
         
           if that.current != @id
+
               that.$element
               .find('p')
               .attr('class', 'hint-' + @id)
               .fadeOut 'fast', ->
-                $(this)
+                originalHeight = $(@).height()
+
+                $(@)
+                .css({ opacity: '0', display: 'block'})
                 .html(hint)
-                .fadeIn('fast')
+
+                newHeight = $(@).height()
+
+                $(@)
+                .css('height', originalHeight)
+                .animate {height: newHeight}, 'fast', ->
+                  $(@).css({height: 'auto', display: 'none', opacity: '1'}).fadeIn('fast')
 
               that.current = @id
 
@@ -100,9 +110,18 @@ $.jHint = ( element, options ) ->
             .find('p')
             .attr('class', 'hint-original')
             .fadeOut 'fast', ->
-              $(this)
+              originalHeight = $(@).height()
+
+              $(@)
+              .css({ opacity: '0', display: 'block'})
               .html(that.$element.attr('original-hint'))
-              .fadeIn('fast')
+
+              newHeight = $(@).height()
+
+              $(@)
+              .css('height', originalHeight)
+              .animate {height: newHeight}, 'fast', ->
+                $(@).css({height: 'auto', display: 'none', opacity: '1'}).fadeIn('fast')
 
             that.current = 'original'
           , 3000
