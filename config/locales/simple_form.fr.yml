@@ -18,9 +18,9 @@ fr:
     # Labels and hints examples
     labels:
       user:
-        email:             E-mail
-        pass:              Mot de passe
-        pass_confirmation: Confirmation
+        email:                 E-mail
+        password:              Mot de passe
+        password_confirmation: Confirmation
 
       hero:
         firstname: Prénom
@@ -31,11 +31,11 @@ fr:
 
     hints:
       user:
-        pass:              "Un mot de passe sécurisé (6 à 40 caractères)."
-        pass_confirmation: Retapez votre mot de passe pour être sûr de ne pas vous tromper.
-        email:             Une adresse email valide qui vous permettra de vous connecter.
+        password:              "Un mot de passe sécurisé (6 à 40 caractères)."
+        password_confirmation: Retapez votre mot de passe pour être sûr de ne pas vous tromper.
+        email:                 Une adresse email valide qui vous permettra de vous connecter.
 
       hero:
         firstname: "Un prénom ou surnom fantastique (3 à 12 lettres).<br />Exemples : Lulin, Orryk, Foldred."
         lastname:  "Un nom fantastique (3 à 17 lettres, espaces et apostrophes compris).<br />Exemples : de Dun, Gamlin, d'Auberose."
-        nation: La nation que vous choisirez influencera votre expérience de jeu ! Choisissez là avec attention.
+        nation:    La nation que vous choisirez influencera votre expérience de jeu ! Choisissez là avec attention.

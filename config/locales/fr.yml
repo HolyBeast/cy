@@ -20,13 +20,13 @@ fr:
               invalid:   L'email est invalide.
               blank:     L'email doit être renseigné.
             
-            pass:
+            password:
               blank:        Le mot de passe doit être renseigné.
               confirmation: La confirmation ne correspond pas !
               too_short:    Le mot de passe doit compter au moins %{count} caractères.
               too_long:     Le nom ne doit pas excéder %{count} caractères.
             
-            pass_confirmation:
+            password_confirmation:
               blank:     Le mot de passe doit être confirmé !
         hero:
           attributes:
