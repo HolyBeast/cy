@@ -2,13 +2,14 @@
 #
 # Table name: users
 #
-#  id            :integer          not null, primary key
-#  pass          :string(40)
-#  email         :string(100)
-#  contact_email :string(100)
-#  state         :integer
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
+#  id                :integer          not null, primary key
+#  persistence_token :string(100)
+#  password          :string(40)
+#  email             :string(100)
+#  contact_email     :string(100)
+#  role              :integer          default(1)
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html

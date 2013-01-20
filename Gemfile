@@ -5,6 +5,8 @@ gem 'cancan'
 gem 'jquery-rails'
 gem 'haml'
 gem 'simple_form'
+gem 'client_side_validations'
+gem 'client_side_validations-simple_form'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -31,9 +33,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
 end
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

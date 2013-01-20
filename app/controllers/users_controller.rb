@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
 
     if @user.save
-
+      render 'home/index'
     else
       @title = 'register'
       render 'new'

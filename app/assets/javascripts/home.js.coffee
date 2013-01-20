@@ -7,6 +7,5 @@ $(document).ready ->
   $('#main form select').jSelect()
   $('.observator').jHint()
 
-  if $.browser.webkit
-    $('input[type=text], input[type=password]').each ->
-      $(this).attr 'autocomplete', 'off'
+  $('form').each ->
+    $(this).attr 'autocomplete', 'off'

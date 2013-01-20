@@ -6,23 +6,6 @@
 
 $ = jQuery
 
-$.fn.typewriter = ->
-  @each ->
-    clearInterval this.timer if @timer?
-
-    progress = 0
-    $ele     = $(@)
-    str      = $.trim($ele.html())
-    
-    $ele.empty()
-
-    @timer = setInterval ->
-      $ele.html str.substring(0, progress++)
-    , 13
-
-  this
-
-
 $.jHint = ( element, options ) ->
   # current state
   state = ''
@@ -69,13 +52,13 @@ $.jHint = ( element, options ) ->
 
       @$target
       .focus ->
+        hint  = $(@).closest('.field').find('span.hint').html()
+        error = $(@).closest('.field').find('span.error').html()
 
-        if $(@).attr('title') != ''
-          $(@)
-          .attr('original-title', $.trim($(@).attr('title')))
-          .attr 'title', ''
+        hint = '' if hint == undefined
+        hint = hint + '<br /><br />' if hint != '' && error != undefined
+        hint = hint + '<span style="color: #c22">' + error + '</span>' if error != undefined
 
-        hint = $(@).attr 'original-title'
         if hint != ''
           clearTimeout that.onblur if that.onblur?
         
@@ -134,7 +117,7 @@ $.jHint = ( element, options ) ->
 
 # default plugin settings
 $.jHint::defaults =
-  target: 'input[title], select'
+  target: 'input[type!=submit], select'
   callback: -> 
 
 $.fn.jHint = (options) ->

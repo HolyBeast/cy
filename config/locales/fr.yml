@@ -17,8 +17,9 @@ fr:
               invalid:   Le nom ne doit compter que des caractères simples.
             
             email:
-              invalid:   L'email est invalide.
-              blank:     L'email doit être renseigné.
+              invalid: L'email est invalide.
+              blank:   L'email doit être renseigné.
+              taken:   L'email renseigné est déjà utilisé.
             
             password:
               blank:        Le mot de passe doit être renseigné.
@@ -32,6 +33,7 @@ fr:
           attributes:
             firstname:
               blank:     Le prénom de votre héros doit être renseigné.
+              taken:     Le couple prénom / nom de votre héros est déjà pris.
               too_short: Le prénom de votre héros doit compter au moins %{count} lettres.
             
             lastname:
@@ -44,6 +46,10 @@ fr:
             race:
               blank:     La race de votre héros doit être renseignée.
               inclusion: La race de votre héros doit être dans la liste.
+     
+            sex:
+              blank:     Le genre de votre héros doit être renseigné.
+              inclusion: Le genre de votre héros doit être dans la liste.
 
   nations:
     klum:    Empire Mécanique de Klüm
@@ -59,3 +65,7 @@ fr:
     human_west: Humain des plaines
     orc:        Orc
     orc_voda:   Orc Voda
+
+  helpers:
+    select:
+      prompt: "Veuillez sélectionner"

@@ -1,7 +1,7 @@
 %h1 
   %span= t('title.register')
 
-= cy_form_for @user, :url => register_path do |u|
+= simple_form_for @user, :url => register_path, :validate => true do |u|
   .observator
     Bonjour, je suis l'Observateur. J'apparaîtrai à tout moment pour vous aider, même dans les ténèbres les plus profondes.
 

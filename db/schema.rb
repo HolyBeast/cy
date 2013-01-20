@@ -29,12 +29,13 @@ ActiveRecord::Schema.define(:version => 20130104031553) do
   add_index "heros", :user_id
 
   create_table "users", :force => true do |t|
-    t.string   "password",      :limit => 40
-    t.string   "email",         :limit => 100
-    t.string   "contact_email", :limit => 100
-    t.integer  "role",          :limit => 2, :default => 1
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.string   "persistence_token", :limit => 100
+    t.string   "password",          :limit => 40
+    t.string   "email",             :limit => 100
+    t.string   "contact_email",     :limit => 100
+    t.integer  "role",              :limit => 2, :default => 1
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

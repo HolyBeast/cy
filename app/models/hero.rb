@@ -31,7 +31,10 @@ class Hero < ActiveRecord::Base
                      :inclusion => { in: Nation::NAMES }
 
   validates :race, :presence => true,
-                   :inclusion => { in: lambda { |hero| Race::NAMES[hero.nation] } }
+                   :inclusion => { in: lambda do |hero|
+                     Race::NAMES[hero.nation] ||= []
+                     Race::NAMES[hero.nation]
+                   end }
 
   validates :sex, :presence => true,
                   :inclusion => { in: self::SEX }
