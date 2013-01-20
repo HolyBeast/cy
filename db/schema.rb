@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(:version => 20130104031553) do
 
   create_table "heros", :force => true do |t|
     t.string   "firstname",  :limit => 12
-    t.string   "lastname",   :limit => 17
+    t.string   "lastname",   :limit => 18
     t.string   "race"
     t.string   "nation"
     t.string   "sex",        :limit => 1

@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   has_one :hero, :dependent => :destroy
   accepts_nested_attributes_for :hero
 
-  email_regex = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+  email_regex = /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
 
   validates :email, :presence => true,
                     :format => { :with => email_regex },

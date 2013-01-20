@@ -1,0 +1,38 @@
+fr:
+  # Model validation
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            name:
+              too_short: Le nom doit compter au moins %{count} caractères.
+              too_long:  Le nom ne doit pas excéder %{count} caractères.
+              invalid:   Le nom ne doit compter que des caractères simples.
+            
+            email:
+              invalid: L'email est invalide.
+              blank:   L'email doit être renseigné.
+              taken:   L'email renseigné est déjà utilisé.
+            
+            password:
+              blank:        Le mot de passe doit être renseigné.
+              confirmation: La confirmation ne correspond pas !
+              too_short:    Le mot de passe doit compter au moins %{count} caractères.
+              too_long:     Le nom ne doit pas excéder %{count} caractères.
+            
+            password_confirmation:
+              blank:     Le mot de passe doit être confirmé !
+
+  simple_form:
+    labels:
+      user:
+        email:                 E-mail
+        password:              Mot de passe
+        password_confirmation: Confirmation
+
+    hints:
+      user:
+        password:              "Un mot de passe sécurisé (6 à 40 caractères)."
+        password_confirmation: Retapez votre mot de passe pour être sûr de ne pas vous tromper.
+        email:                 Une adresse email valide qui vous permettra de vous connecter.

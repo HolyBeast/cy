@@ -1,3 +1,5 @@
+# encoding: utf-8
+#
 # == Schema Information
 #
 # Table name: heros
@@ -20,11 +22,13 @@ class Hero < ActiveRecord::Base
 
   SEX = %w( Homme Femme Autre )
 
-  validates :firstname, :presence => true,
+  validates :firstname, :format => { with: /^[a-záàâäãåçéèêëíìîïñóòôöõúùûüýÿ]+$/i },
                         :length => { within: 3..12 },
-                        :uniqueness => { scope: :lastname }
+                        :presence => true,
+                        :uniqueness => { case_sensitive: false, scope: :lastname }
 
-  validates :lastname, :length => { within: 3..17 },
+  validates :lastname, :format => { with: /^[a-záàâäãåçéèêëíìîïñóòôöõúùûüýÿ\x20'-]+$/i },
+                       :length => { within: 3..18 },
                        :if => lambda { |hero| !hero.lastname.blank? }
 
   validates :nation, :presence => true,

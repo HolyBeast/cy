@@ -3,10 +3,10 @@
 
 = simple_form_for @user, :url => register_path, :validate => true do |u|
   .observator
-    Bonjour, je suis l'Observateur. J'apparaîtrai à tout moment pour vous aider, même dans les ténèbres les plus profondes.
+    = t('observator.register.introduction')
 
   .col-50
-    %h2 Héros
+    %h2= t('hero')
     #test
     = u.simple_fields_for :hero do |h|
       = h.input :firstname
@@ -20,12 +20,12 @@
       = h.input :sex, :collection => Hero::SEX
 
   .col-50
-    %h2 Avatar
+    %h2= t('avatar')
     
     .avatar
       = image_tag 'avatar/sample.png'
 
-    %h2 Connexion
+    %h2= t('connexion')
 
     = u.input :email
 
@@ -35,8 +35,6 @@
 
   .col-100
     .field
-      En vous inscrivant, vous acceptez
-      = link_to 'le règlement du jeu', rules_path
-      qui stipule que le multicompte et le prêt de compte sont interdits.
-    
+      = raw t('rules_agreement', :rules_link => link_to(t('rules_link'), rules_path))
+
     = u.submit "S'inscrire"

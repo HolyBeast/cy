@@ -1,0 +1,43 @@
+fr:
+  # Model validation
+  activerecord:
+    errors:
+      models:
+        hero:
+          attributes:
+            firstname:
+              blank:     Le prénom de votre héros doit être renseigné.
+              invalid:   "Le prénom de votre héros ne peut se composer que de lettres."
+              taken:     Le couple prénom / nom de votre héros est déjà pris.
+              too_short: Le prénom de votre héros doit compter au moins %{count} lettres.
+            
+            lastname:
+              invalid:   "Le nom de votre héros ne peut se composer que de lettres, d'espaces, de tirets et d'apostrophes."
+              too_short: Le nom de votre héros doit compter au moins %{count} lettres.
+
+            nation:
+              blank:     La nation de votre héros doit être renseignée.
+              inclusion: La nation de votre héros doit être dans la liste.
+
+            race:
+              blank:     La race de votre héros doit être renseignée.
+              inclusion: La race de votre héros doit être dans la liste.
+
+            sex:
+              blank:     Le genre de votre héros doit être renseigné.
+              inclusion: Le genre de votre héros doit être dans la liste.
+  
+  simple_form:
+    labels:
+      hero:
+        firstname: Prénom
+        lastname:  Nom
+        nation:    Nation
+        race:      Race
+        sex:       Sexe
+
+    hints:
+      hero:
+        firstname: "Je crois vous avoir déjà rencontré, mais je ne parviens plus à me souvenir de votre prénom (3 à 12 lettres).<br />Exemples : Lulin, Orryk, Foldred."
+        lastname:  "Un nom fantastique (3 à 17 lettres, espaces et apostrophes compris).<br />Exemples : de Dun, Gamlin, d'Auberose."
+        nation:    La nation que vous choisirez influencera votre expérience de jeu ! Choisissez là avec attention.
