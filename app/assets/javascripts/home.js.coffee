@@ -7,7 +7,7 @@ $(document).ready ->
   $('.observator').jHint()
   $('#main form select').jSelect()
   $('#user_hero_attributes_nation')
-  .jUpdateSelect({target: '#user_hero_attributes_race', url: '/get/races.json'})
+  .jUpdateSelect {target: '#user_hero_attributes_race', url: '/get/races.json'}
 
   $('form').each ->
     $(this).attr 'autocomplete', 'off'
