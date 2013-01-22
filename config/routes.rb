@@ -15,6 +15,8 @@ Cy::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
+  get   '/get/races' => 'users#get_races', :format => :json
+
   get   '/ontheroad' => 'home#map'
   post  '/register' => 'users#create', :as => :register
   get   '/register' => 'users#new', :as => :register

@@ -7,7 +7,7 @@
 
   .col-50
     %h2= t('hero')
-    #test
+
     = u.simple_fields_for :hero do |h|
       = h.input :firstname
 
@@ -15,7 +15,7 @@
 
       = h.input :nation, :collection => Nation::NAMES.map { |name| [ t(name, scope: 'nations'), name ] }
 
-      = h.input :race, :collection => Race::NAMES['klum'].map { |name| [ t(name, scope: 'races'), name ] }
+      = h.input :race, :collection => @race.map { |name| [ t(name, scope: 'races'), name ] }
 
       = h.input :sex, :collection => Hero::SEX
 

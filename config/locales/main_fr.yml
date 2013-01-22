@@ -18,13 +18,17 @@ fr:
     ludwynn: Royaume Académique de Ludwynn
 
   races:
-    dwarf:      Nain
-    elf:        Elfe
-    gwanling:   Gwanling
-    human:      Humain
-    human_west: Humain des plaines
-    orc:        Orc
-    orc_voda:   Orc Voda
+    dwarf:         Nain
+    elf:           Elfe
+    gobelin:       Gobelin
+    gwanling:      Gwanling
+    high_elf:      Haut elfe
+    human:         Humain
+    lowland_human: Humain des plaines
+    night_elf:     Elfe de la nuit
+    orc:           Orc
+    sylvan_elf:    Elfe sylvain
+    voda_orc:      Orc Voda
 
   observator:
     register:

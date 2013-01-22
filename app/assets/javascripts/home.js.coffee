@@ -9,3 +9,17 @@ $(document).ready ->
 
   $('form').each ->
     $(this).attr 'autocomplete', 'off'
+
+  $('#user_hero_attributes_nation').change ->
+    userRace = $('#user_hero_attributes_race')
+
+    $.get('/get/races.json', { nation : $(@).val() }, (data) ->
+      userRace.empty()
+      $.each(data, (value, label) ->
+        option = $("<option />").attr("value", value).text(label)
+        
+        userRace
+        .append(option)
+        .change()
+      )
+    )
