@@ -1,7 +1,7 @@
 class GetController < ApplicationController
   def races
-    Race::NAMES[params[:nation]] ||= []
-    keys   = Race::NAMES[params[:nation]]
+    Race::NAMES[params[:value]] ||= []
+    keys   = Race::NAMES[params[:value]]
     values = keys.map{ |key| t(key, scope: :races) }
     races  = Hash[keys.zip(values)]
 
