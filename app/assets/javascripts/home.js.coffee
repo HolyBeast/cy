@@ -20,6 +20,6 @@ $(document).ready ->
         
         userRace
         .append(option)
-        .change()
       )
+      userRace.change()
     )
