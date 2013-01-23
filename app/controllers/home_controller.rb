@@ -4,6 +4,6 @@ class HomeController < ApplicationController
   end
 
   def map
-    @title = 'Carte 2D Iso'
+    @title = 'map'
   end
 end

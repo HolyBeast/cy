@@ -1,7 +1,7 @@
 fr:
   # General assignment
   avatar: Avatar
-  hero: héros
+  hero: Héros
   connection: Connexion
   rules_agreement:  "En vous inscrivant, vous acceptez %{rules_link} qui stipule que le multicompte et le prêt de compte sont interdits."
   rules_link: le règlement du jeu
@@ -9,6 +9,7 @@ fr:
   # Titles of Pages
   title:
     home:     Accueil
+    map:      Test de rendu
     register: "S'engager"
 
   nations:

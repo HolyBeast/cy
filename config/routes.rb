@@ -18,7 +18,7 @@ Cy::Application.routes.draw do
   get   '/get/races' => 'get#races', :format => :json
 
   get   '/ontheroad' => 'home#map'
-  post  '/register' => 'users#create', :as => :register
+  post  '/register' => 'users#new', :as => :register
   get   '/register' => 'users#new', :as => :register
   
   match '/rules'    => 'pages#rules', :as => :rules

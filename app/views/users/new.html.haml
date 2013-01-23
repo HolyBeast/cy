@@ -1,7 +1,7 @@
 %h1 
   %span= t('title.register')
 
-= simple_form_for @user, :url => register_path, :validate => true do |u|
+= simple_form_for @user, :url => register_path do |u|
   .observator
     = t('observator.register.introduction')
 
@@ -15,7 +15,7 @@
 
       = h.input :nation, :collection => Nation::NAMES.map { |name| [ t(name, scope: 'nations'), name ] }
 
-      = h.input :race, :collection => @race.map { |name| [ t(name, scope: 'races'), name ] }
+      = h.input :race, :collection => Race::NAMES[h.object.nation || 'klum'].map { |name| [ t(name, scope: 'races'), name ] }
 
       = h.input :sex, :collection => Hero::SEX
 

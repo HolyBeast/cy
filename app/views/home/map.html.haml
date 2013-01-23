@@ -2,4 +2,35 @@
   %span Test de rendu
   
 .col-100
-  lol
+  /
+    .map
+      .inner-map
+        - offset = 8.round * 32 - 11
+        - 20.times do |y|
+          - 20.times do |x|
+            - left = ( x - y ) * 32 + offset
+            - top  = ( x + y ) * 16
+          
+            .case{style: "left: #{left}px; top: #{top}px;", class: "x#{x} y#{y}"}
+              = x.to_s + '-' + y.to_s
+
+  %h2 Prototype n°1
+  %h3 Caractéristiques
+  \- Pas de image area encore.<br />
+  \- Base des tuiles : losange.<br />
+  \- Direction possible : 8.
+  .map
+    .inner-map
+      - i = 0
+      - 20.times do |y|
+        - 20.times do |x|
+          - left = x * 64
+          - top  = y * 16
+          
+          - if y.odd?
+            - left += 32
+
+          .case{style: "left: #{left}px; top: #{top}px;", class: "x#{x} y#{y}", id: "case-#{i}"}
+            X
+          
+          - i = i + 1
