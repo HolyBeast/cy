@@ -20,8 +20,6 @@ $(document).ready ->
     @current = case_id
     y = Math.floor(case_id / width_map)
 
-
-    $('#test').text(y)
     $('#proto2-case-' + (case_id - 1) +
     ', #proto2-case-' + (case_id + 1) +
     ', #proto2-case-' + (case_id - width_map - 1) +
