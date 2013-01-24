@@ -12,28 +12,22 @@ $(document).ready ->
   $('form').each ->
     $(this).attr 'autocomplete', 'off'
 
-  width_map = 20
-  height_map= 10
-  $('.map .case').mouseover ->
+  width_map = 15
+
+  $('#proto2 area').mouseover ->
     $case   = $(@)
-    case_id = parseFloat($case.attr('id').substr(5))
+    case_id = parseFloat($case.attr('id').substr(12))
     @current = case_id
     y = Math.floor(case_id / width_map)
 
-    $('#case-' + (case_id - 40)).css('color', 'red')
-    $('#case-' + (case_id + 40)).css('color', 'red')
-    $('#case-' + (case_id - 1)).css('color', 'red')
-    $('#case-' + (case_id + 1)).css('color', 'red')
-    $('#case-' + (case_id - 20)).css('color', 'red')
-    $('#case-' + (case_id + 20)).css('color', 'red')
-    $('#test').text((case_id + 1))
 
-    if y%2 == 0
-      $('#case-' + (case_id - 21)).css('color', 'red')
-      $('#case-' + (case_id + 19)).css('color', 'red')
-    else
-      $('#case-' + (case_id - 19)).css('color', 'red')
-      $('#case-' + (case_id + 21)).css('color', 'red')
+    $('#test').text(y)
+    $('#proto2-case-' + (case_id - 1) +
+    ', #proto2-case-' + (case_id + 1) +
+    ', #proto2-case-' + (case_id - width_map - 1) +
+    ', #proto2-case-' + (case_id + width_map + 1) +
+    ', #proto2-case-' + (case_id - width_map) +
+    ', #proto2-case-' + (case_id + width_map)) .text('X')
 
   .mouseout ->
-    $('.case').css('color', 'white')
+    $('#proto2 .case').text('')

@@ -3,28 +3,26 @@
   overflow: hidden
   position: relative
   background: #000
-  border: 2px solid #c2a
+  border: 2px solid #ccc
   margin: 0 auto
-  
-  .inner-map
+
+  .inner-map, .action-map
     position: relative
+
+    img
+      height: 100%
+      width: 100%
+
+    map
+      cursor: pointer
 
     .case
       background: url(map/bric.png) no-repeat
-      height: 43px
-      width: 66px
+      height: 34px
+      width: 48px
       position: absolute
       text-align: center
       color: #fff
-      padding-top: 6px
-
-    .hexa
-      background: url(map/hexa.png) no-repeat
-      height: 32px
-      width: 32px
-      position: absolute
-      text-align: center
-      color: #fff
-      padding-top: 6px
+      padding-top: 4px
 
     .tree

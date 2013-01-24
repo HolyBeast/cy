@@ -2,35 +2,36 @@
   %span Test de rendu
   
 .col-100
-  /
-    .map
-      .inner-map
-        - offset = 8.round * 32 - 11
-        - 20.times do |y|
-          - 20.times do |x|
-            - left = ( x - y ) * 32 + offset
-            - top  = ( x + y ) * 16
-          
-            .case{style: "left: #{left}px; top: #{top}px;", class: "x#{x} y#{y}"}
-              = x.to_s + '-' + y.to_s
 
+  - height = 26
+  - width = 48
+  - width_map = 15
+  - offset = (width_map - 1) * 0.75 * width
   %h2 Prototype n°1
   %h3 Caractéristiques
-  \- Pas de image area encore.<br />
-  \- Base des tuiles : losange.<br />
-  \- Direction possible : 8.
-  .map
+  \- Base hexagonale.<br />
+  \- Intégration d'une couche gérant les interactions avec les cases grâce aux map area.<br />
+  #test
+  .map#proto2
     .inner-map
       - i = 0
-      - 20.times do |y|
-        - 20.times do |x|
-          - left = x * 64
-          - top  = y * 16
-          
-          - if y.odd?
-            - left += 32
+      - width_map.times do |y|
+        - width_map.times do |x|
+          - left = (x - y) * width * 0.75 + offset
+          - top  = (x + y) * height / 2
 
-          .case{style: "left: #{left}px; top: #{top}px;", class: "x#{x} y#{y}", id: "case-#{i}"}
-            X
-          
+          .case{style: "left: #{left}px; top: #{top}px;", class: "x#{x} y#{y}", id: "proto2-case-#{i}"}
           - i = i + 1
+
+    .action-map
+      %img{usemap: '#map'}
+      %map{name: 'map'}
+        - i = 0
+        - width_map.times do |y|
+          - width_map.times do |x|
+            - left = (x - y) * width * 0.75 + offset
+            - top  = (x + y) * height / 2
+      
+            %area{ href: "#", shape: "polygon", coords: "#{left + width * 0.25}, #{top}, #{left + width * 0.75}, #{top}, #{left + width}, #{top + height / 2}, #{left + width * 0.75}, #{top + height}, #{left + width * 0.25}, #{top + height}, #{left}, #{top + height / 2}", id: "proto2-area-#{i}" }
+
+            - i = i + 1
