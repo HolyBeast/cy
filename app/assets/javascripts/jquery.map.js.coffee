@@ -59,7 +59,6 @@ $.jMap = ( element, options ) ->
         pixelWidthMap  = xOffset * 2 + that.settings['widthTile']
         pixelHeightMap = that.settings['heightTile'] * widthMap
 
-        $('#test').append('[' + (pixelWidthMap) + '] ')
         $.each(data, (x, aY) ->
           x = parseFloat(x)
           $.each(aY, (k, y) ->
