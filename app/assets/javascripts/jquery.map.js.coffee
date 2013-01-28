@@ -49,16 +49,17 @@ $.jMap = ( element, options ) ->
       .html('<img src="' + image_path('design/pixel.png') + '" usemap="#map" /><map name="map" />')
 
       $.get('/get/map.json', (data) ->
-        xInit = Object.keys(data)[0]
-        yInit = data[xInit][0]
-        yEnd  = data[xInit][data[xInit].length]
-        xEnd  = Object.keys(data)[Object.keys(data).length-1]
+        xInit = parseFloat(Object.keys(data)[0])
+        yInit = parseFloat(data[xInit][0])
+        xEnd  = parseFloat(Object.keys(data)[Object.keys(data).length-1])
+        yEnd  = parseFloat(data[xEnd][data[xEnd].length-1])
 
         widthMap = xEnd - xInit + 1
         xOffset  = (widthMap * 2 - 2) * 0.75 * that.settings['widthTile'] / 2
         pixelWidthMap  = xOffset * 2 + that.settings['widthTile']
         pixelHeightMap = that.settings['heightTile'] * widthMap
 
+        console.log(widthMap)
         $.each(data, (x, aY) ->
           x = parseFloat(x)
           $.each(aY, (k, y) ->
@@ -71,7 +72,7 @@ $.jMap = ( element, options ) ->
               left: (556 - pixelWidthMap) / 2,
               top: (396 - pixelHeightMap) / 2
             })
-            
+
             $('#case-' + x + '-' + y)
             .css({
               left: left,
@@ -104,6 +105,11 @@ $.jMap = ( element, options ) ->
                 (left) + ', ' +
                 (top + that.settings['heightTile'] / 2)
             })
+
+
+            if x == xInit || y == yInit || x == xEnd || y == yEnd || Math.abs(x - y) == (widthMap - 1) / 2
+              $('#case-' + x + '-' + y).addClass('border').attr('id', '')
+              $('#area-' + x + '-' + y).remove()
           )
         )
       
@@ -137,8 +143,8 @@ $.jMap = ( element, options ) ->
 
 # default plugin settings
 $.jMap::defaults =
-  heightTile: 26
-  widthTile: 48
+  heightTile: 22
+  widthTile: 40
   callback: -> 
 
 $.fn.jMap = (options) ->
