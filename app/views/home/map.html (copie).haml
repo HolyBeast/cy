@@ -1,0 +1,55 @@
+%h1
+  %span Test de rendu
+  
+.col-100
+
+  - height = 26
+  - width = 48
+  - width_map = 24
+  - offset_width  = (width_map * 2 - 2) * 0.75 * width / 2
+  - pixel_width  = offset_width * 2 + width
+  - pixel_height = height * width_map
+
+  %h2 Prototype n°2
+  %h3 Caractéristiques
+  \ - Base hexagonale.<br />
+  \ - Intégration d'une couche gérant les interactions avec les cases grâce aux map area.<br />
+  #test
+  
+  = hidden_field_tag :width, width_map
+  = " - Largeur : #{pixel_width}"
+  %br
+  = " - Décalage : #{offset_width}"
+  %br
+  = " - Hauteur : #{pixel_height}"
+  %br
+  = " - Largeur de la carte (case) : #{width_map}"
+  %br
+  = " - Position de la souris :"
+  %span#mouse-x 0
+  \-
+  %span#mouse-y 0
+  
+  .map
+    .inner-map{style: "left: #{(556 - pixel_width) / 2}px; top: #{(396 - pixel_height) / 2}px;"}
+      - i = 0
+      - width_map.times do |y|
+        - width_map.times do |x|
+          - left = (x - y) * width * 0.75 + offset_width
+          - top  = (x + y) * height / 2
+
+          .case{style: "left: #{left}px; top: #{top}px;", class: "x#{x} y#{y}", id: "proto2-case-#{i}"}
+          - i = i + 1
+
+    .action-map{style: "left: #{(556 - pixel_width) / 2}px; top: #{(396 - pixel_height) / 2}px; width: #{pixel_width}px; height: #{pixel_height}px"}
+      = image_tag("design/pixel.png", usemap: "#map")
+      %map{name: 'map'}
+        - i = 0
+        - width_map.times do |y|
+          - width_map.times do |x|
+            - left = (x - y) * width * 0.75 + offset_width
+            - top  = (x + y) * height / 2
+      
+            %area{ href: "#", shape: "polygon", coords: "#{left + width * 0.25}, #{top}, #{left + width * 0.75}, #{top}, #{left + width}, #{top + height / 2}, #{left + width * 0.75}, #{top + height}, #{left + width * 0.25}, #{top + height}, #{left}, #{top + height / 2}", id: "proto2-area-#{i}" }
+
+            - i = i + 1

@@ -1,0 +1,55 @@
+ width_map = parseFloat($('#width').val())
+      i = 0
+      $('.action-map').mousemove (e) ->
+        @mouseX = e.pageX - $(@).offset().left + parseFloat($(@).css('left'))
+        @mouseY = e.pageY - $(@).offset().top + parseFloat($(@).css('top'))
+        
+        $('#mouse-x').text(@mouseX)
+        $('#mouse-y').text(@mouseY)
+
+        if 100 > @mouseX
+          @slideX = (100 - @mouseX) / 100
+          @direction = 'west'
+        else if @mouseX > $('.map').width() - 100
+          @slideX = (100 - ($('.map').width() - @mouseX)) / 100
+          @direction = 'east'
+        else
+          @slideX = 0
+        
+        if 100 > @mouseY
+          @slideY = (100 - @mouseY) / 100
+          @direction = 'north'
+        else if @mouseY > $('.map').height() - 100
+          @slideY = (100 - ($('.map').height() - @mouseY)) / 100
+          @direction = 'south'
+        else 
+          @slideY = 0
+
+        $('#test').text(@slideX + '-' + @slideY)
+      .mouseout ->
+        $('#test').text('non')
+      .mouseenter ->
+        $('.inner-map, .action-map').css({left: '+=' + (10 * @slideX.round()), top: '+=' + (10 * @slideY)})
+
+
+      $('#proto2 area')
+      .mouseover ->
+        $case   = $(@)
+        case_id = parseFloat($case.attr('id').substr(12))
+        @current = case_id
+        y = Math.floor(case_id / width_map)
+
+        $('#proto2-case-' + (case_id - 1) +
+        ', #proto2-case-' + (case_id + 1) +
+        ', #proto2-case-' + (case_id - width_map - 1) +
+        ', #proto2-case-' + (case_id + width_map + 1) +
+        ', #proto2-case-' + (case_id - width_map) +
+        ', #proto2-case-' + (case_id + width_map)) .text('X')
+
+      .mouseout ->
+        $('#proto2-case-' + (@current - 1) +
+        ', #proto2-case-' + (@current + 1) +
+        ', #proto2-case-' + (@current - width_map - 1) +
+        ', #proto2-case-' + (@current + width_map + 1) +
+        ', #proto2-case-' + (@current - width_map) +
+        ', #proto2-case-' + (@current + width_map)) .text('')

@@ -40,4 +40,19 @@ ActiveRecord::Schema.define(:version => 20130104031553) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
 
+  create_table "maps", :force => true do |t|
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  create_table "cases", :force => true do |t|
+    t.integer "x"
+    t.integer "y"
+    t.integer "map_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "cases", ["x", "y", "map_id"], :name => "index_cases_on_x_and_y_and_map_id", :unique => true
+
 end
