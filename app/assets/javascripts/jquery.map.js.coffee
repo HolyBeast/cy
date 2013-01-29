@@ -116,17 +116,18 @@ $.jMap = ( element, options ) ->
                   $('#area-' + xDisplay + '-' + yDisplay).removeAttr('href', 'id')
         
         $('.map').append('<input class="focus-map" />')
+        
         $('.focus-map')
-        .css({opacity: '0', marginLeft: '-9999px'})
         .focus ->
           $('.case.border').addClass('focus')
         .blur ->
           $('.case.border').removeClass('focus')
 
         $('.map area')
-        .click (e) ->
+        .bind('click focus', (e) ->
           e.preventDefault()
           $('.focus-map').focus()
+        )
 
         $('.map area[href]')
         .mouseover ->
