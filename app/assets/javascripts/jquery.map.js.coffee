@@ -49,69 +49,71 @@ $.jMap = ( element, options ) ->
       .html('<img src="' + image_path('design/pixel.png') + '" usemap="#map" /><map name="map" />')
 
       $.get('/get/map.json', (data) ->
-        xInit = parseFloat(Object.keys(data)[0])
-        yInit = parseFloat(data[xInit][0])
-        xEnd  = parseFloat(Object.keys(data)[Object.keys(data).length-1])
-        yEnd  = parseFloat(data[xEnd][data[xEnd].length-1])
+        border = true
+        size   = 9
+        specialSize = if border then size++ else size
+        extendedSize = specialSize * 2
 
-        widthMap = xEnd - xInit + 1
-        xOffset  = (widthMap * 2 - 2) * 0.75 * that.settings['widthTile'] / 2
-        pixelWidthMap  = xOffset * 2 + that.settings['widthTile']
-        pixelHeightMap = that.settings['heightTile'] * widthMap
+        xOffset         = (extendedSize * 2 - 2) * 0.75 * that.settings['widthTile'] / 2
+        pixelWidthMap   = xOffset * 2 + that.settings['widthTile']
+        pixelHeightMap  = that.settings['heightTile'] *(extendedSize + 1)
+        widthContainer  = that.$element.width()
+        heightContainer = that.$element.height()
 
-        console.log(widthMap)
-        $.each(data, (x, aY) ->
-          x = parseFloat(x)
-          $.each(aY, (k, y) ->
-            left = (x - y) *  that.settings['widthTile'] * 0.75 + xOffset
-            top  = (x + y) *  that.settings['heightTile'] / 2
+        for x in [0..extendedSize]
+          for y in [0..extendedSize]
 
-            $('.inner')
-            .append('<div id="case-' + x + '-' + y + '" class="case" />')
-            .css({
-              left: (556 - pixelWidthMap) / 2,
-              top: (396 - pixelHeightMap) / 2
-            })
+            if Math.abs(y - x) <= specialSize
+              xDisplay = if border then x - 1 else x
+              yDisplay = if border then y - 1 else y
 
-            $('#case-' + x + '-' + y)
-            .css({
-              left: left,
-              top: top
-            })
+              left = (x - y) *  that.settings['widthTile'] * 0.75 + xOffset
+              top  = (x + y) *  that.settings['heightTile'] / 2
 
-            $('.action')
-            .css({
-              left: (556 - pixelWidthMap) / 2,
-              top: (396 - pixelHeightMap) / 2,
-              width: (pixelWidthMap),
-              height: (pixelHeightMap)
-            })
-            .find('map')
-            .append('<area id="area-' + x + '-' + y + '" shape="polygon" href="#" />')
+              $('.inner')
+              .append('<div id="case-' + xDisplay + '-' + yDisplay + '" class="case" />')
+              .css({
+                left: (widthContainer - pixelWidthMap) / 2,
+                top: (heightContainer - pixelHeightMap) / 2
+              })
 
-            $('#area-' + x + '-' + y)
-            .attr({
-              coords: 
-                (left + that.settings['widthTile'] * 0.25) + ', ' + 
-                (top) + ', ' +
-                (left + that.settings['widthTile'] * 0.75) + ', ' +
-                (top) + ', ' +
-                (left + that.settings['widthTile']) + ', ' +
-                (top + that.settings['heightTile'] / 2) + ', ' +
-                (left + that.settings['widthTile'] * 0.75) + ', ' +
-                (top + that.settings['heightTile']) + ', ' +
-                (left + that.settings['widthTile'] * 0.25) + ', ' +
-                (top + that.settings['heightTile']) + ', ' +
-                (left) + ', ' +
-                (top + that.settings['heightTile'] / 2)
-            })
+              $('#case-' + xDisplay + '-' + yDisplay)
+              .css({
+                left: left,
+                top: top
+              })
 
+              $('.action')
+              .css({
+                left: (widthContainer - pixelWidthMap) / 2,
+                top: (heightContainer - pixelHeightMap) / 2
+                width: (pixelWidthMap),
+                height: (pixelHeightMap)
+              })
+              .find('map')
+              .append('<area id="area-' + xDisplay + '-' + yDisplay + '" shape="polygon" href="#" />')
 
-            if x == xInit || y == yInit || x == xEnd || y == yEnd || Math.abs(x - y) == (widthMap - 1) / 2
-              $('#case-' + x + '-' + y).addClass('border').attr('id', '')
-              $('#area-' + x + '-' + y).remove()
-          )
-        )
+              $('#area-' + xDisplay + '-' + yDisplay)
+              .attr({
+                coords: 
+                  (left + that.settings['widthTile'] * 0.25) + ', ' + 
+                  (top) + ', ' +
+                  (left + that.settings['widthTile'] * 0.75) + ', ' +
+                  (top) + ', ' +
+                  (left + that.settings['widthTile']) + ', ' +
+                  (top + that.settings['heightTile'] / 2) + ', ' +
+                  (left + that.settings['widthTile'] * 0.75) + ', ' +
+                  (top + that.settings['heightTile']) + ', ' +
+                  (left + that.settings['widthTile'] * 0.25) + ', ' +
+                  (top + that.settings['heightTile']) + ', ' +
+                  (left) + ', ' +
+                  (top + that.settings['heightTile'] / 2)
+              })
+
+              if border
+                if x == 0 || y == 0 || x == extendedSize || y == extendedSize || Math.abs(x - y) == specialSize
+                  $('#case-' + xDisplay + '-' + yDisplay).addClass(that.settings['borderClass']).attr('id', '').text('')
+                  $('#area-' + xDisplay + '-' + yDisplay).remove()
       
         $('.map area')
         .mouseover ->
@@ -127,6 +129,38 @@ $.jMap = ( element, options ) ->
           ', #case-' + (@currentX) + '-' + (@currentY - 1) +
           ', #case-' + (@currentX) + '-' + (@currentY + 1)) .text('X')
 
+          distanceX  = Math.abs(@currentX - (size - 2))
+          distanceY  = Math.abs(@currentY - (size - 2))
+          distanceXY = Math.abs(@currentX - @currentY)
+          distance   = Math.max(distanceX, distanceY, distanceXY)
+          specialSize = if border then size - 3 else size
+
+          direction = ''
+          if @currentX <= 1 and @currentY <= 1
+            direction += 'N'
+          else if @currentX <= 1
+            direction += 'NW'
+          else if @currentY <= 1
+            direction += 'NE'
+          else if @currentX > specialSize * 2 and @currentY > specialSize * 2
+            direction += 'S'
+          else if @currentY > specialSize * 2
+            direction += 'SW'
+          else if @currentX > specialSize * 2
+            direction += 'SE'
+          else if Math.abs(@currentX - @currentY) >= specialSize and @currentX > @currentY
+            direction += 'E'
+          else if Math.abs(@currentX - @currentY) >= specialSize and @currentX < @currentY
+            direction += 'W'
+          else
+            direction = 'Non'
+
+          speed = if distance == 8 then 2 else 1
+          $('#slide').text(direction)
+          $('#slide-speed').text(speed)
+          $('#distance').text(distance)
+          $('#mouse-x').text(@currentX)
+          $('#mouse-y').text(@currentY)
         .mouseout ->
           $('#case-' + (@currentX - 1) + '-' + (@currentY - 1) +
           ', #case-' + (@currentX + 1) + '-' + (@currentY + 1) +
@@ -134,6 +168,15 @@ $.jMap = ( element, options ) ->
           ', #case-' + (@currentX + 1) + '-' + (@currentY) +
           ', #case-' + (@currentX) + '-' + (@currentY - 1) +
           ', #case-' + (@currentX) + '-' + (@currentY + 1)) .text('')
+
+          $('#slide').text('Non')
+          $('#slide-speed').text('0')
+          $('#distance').text('?')
+          $('#mouse-x').text('?')
+          $('#mouse-y').text('?')
+
+        $('#area-length').text $('.map area').length
+
       )
   # initialise the plugin
   @init()
@@ -143,6 +186,7 @@ $.jMap = ( element, options ) ->
 
 # default plugin settings
 $.jMap::defaults =
+  borderClass: 'border'
   heightTile: 22
   widthTile: 40
   callback: -> 

@@ -12,22 +12,27 @@
 
   %h2 Prototype n°2
   %h3 Caractéristiques
-  \ - Base hexagonale.<br />
+  \ - Base hexagonale. Isométrique partielle (pas de rotation à 45%)<br />
   \ - Intégration d'une couche gérant les interactions avec les cases grâce aux map area.<br />
-  #test
+  \ - Intégration d'une bordure de carte collant exactement à sa forme hexagonale.s
   
-  = hidden_field_tag :width, width_map
-  = " - Largeur : #{pixel_width}"
-  %br
-  = " - Décalage : #{offset_width}"
-  %br
-  = " - Hauteur : #{pixel_height}"
-  %br
-  = " - Largeur de la carte (case) : #{width_map}"
+  #test
+
+  = " - Nombre de cases affichées :"
+  %span#area-length
   %br
   = " - Position de la souris :"
-  %span#mouse-x 0
+  %span#mouse-x ?
   \-
-  %span#mouse-y 0
-  
+  %span#mouse-y ?
+  %br
+  = " - Distance par rapport au centre :"
+  %span#distance ?
+  %br
+  = " - Slide :"
+  %span#slide Non
+  %br
+  = " - Vitesse du slide: "
+  %span#slide-speed 0
+
   .map

@@ -12,12 +12,10 @@ class GetController < ApplicationController
 
   def map
     map = {}
-    width    = 9
-    height   = 9
-    deepness = 9
-    (0..width - 2 + deepness).each do |x|
-      (0..height - 2 + deepness).each do |y|
-        if y - x < height && x - y < width
+    size = 3
+    (0..size - 2 + size).each do |x|
+      (0..size - 2 + size).each do |y|
+        if (y - x).abs < size
           map[x] ||= []
           map[x] << y
         end
