@@ -170,6 +170,7 @@ $.jMap = ( element, options ) ->
             direction = 'Non'
 
           speed = if distance == 8 then 2 else 1
+          speed = if distance < 7 then 0 else speed
           $('#slide').text(direction)
           $('#slide-speed').text(speed)
           $('#distance').text(distance)
