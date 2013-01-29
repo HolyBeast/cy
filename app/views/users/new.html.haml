@@ -1,7 +1,7 @@
 %h1 
   %span= t('title.register')
 
-= simple_form_for @user, :url => register_path do |u|
+= simple_form_for @user, validate: true, :url => register_path do |u|
   .observator
     = t('observator.register.introduction')
 

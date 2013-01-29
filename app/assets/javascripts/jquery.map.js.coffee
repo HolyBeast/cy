@@ -113,9 +113,22 @@ $.jMap = ( element, options ) ->
               if border
                 if x == 0 || y == 0 || x == extendedSize || y == extendedSize || Math.abs(x - y) == specialSize
                   $('#case-' + xDisplay + '-' + yDisplay).addClass(that.settings['borderClass']).attr('id', '').text('')
-                  $('#area-' + xDisplay + '-' + yDisplay).remove()
-      
+                  $('#area-' + xDisplay + '-' + yDisplay).removeAttr('href', 'id')
+        
+        $('.map').append('<input class="focus-map" />')
+        $('.focus-map')
+        .css({opacity: '0', marginLeft: '-9999px'})
+        .focus ->
+          $('.case.border').addClass('focus')
+        .blur ->
+          $('.case.border').removeClass('focus')
+
         $('.map area')
+        .click (e) ->
+          e.preventDefault()
+          $('.focus-map').focus()
+
+        $('.map area[href]')
         .mouseover ->
           $case  = $(@)
           caseCoord = $case.attr('id').split('-')
@@ -161,6 +174,7 @@ $.jMap = ( element, options ) ->
           $('#distance').text(distance)
           $('#mouse-x').text(@currentX)
           $('#mouse-y').text(@currentY)
+
         .mouseout ->
           $('#case-' + (@currentX - 1) + '-' + (@currentY - 1) +
           ', #case-' + (@currentX + 1) + '-' + (@currentY + 1) +
