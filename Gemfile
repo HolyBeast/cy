@@ -7,6 +7,8 @@ gem 'haml'
 gem 'simple_form'
 gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
+gem 'mini_magick'
+
 
 # Gems used only for assets and not required
 # in production environments by default.

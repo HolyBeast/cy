@@ -12,14 +12,22 @@ class GetController < ApplicationController
 
   def map
     map = {}
-    size = 3
-    (0..size - 2 + size).each do |x|
-      (0..size - 2 + size).each do |y|
-        if (y - x).abs < size
-          map[x] ||= []
-          map[x] << y
+    size = 50
+    (1..size).each do |x|
+      (1..size).each do |y|
+        type = 'herb'
+
+        if (x == 10 && y == 10) || (x == 1 && y == 1) || (x == 4 && y == 5) || (x == 50 && y == 50)
+          type = 'water'
         end
+
+        map[x] ||= []
+        map[x][y] = {t: type}
       end
+    end
+
+    File.open('map.json', 'w+') do |f|
+     f.write(map.to_json)
     end
 
     respond_to do |format|
